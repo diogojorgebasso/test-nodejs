@@ -1,6 +1,6 @@
 class SessionController {
   async store(req, res) {
-    return res.status(400);
+    return res.status(200).send();
   }
 }
 
