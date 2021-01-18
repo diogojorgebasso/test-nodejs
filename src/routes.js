@@ -1,3 +1,5 @@
-const routes = require('express').Router()
+const routes = require("express").Router();
+const SessionController = require("./app/controllers/SessionController");
 
-module.exports = routes
+routes.post("/sessions", SessionController.store);
+module.exports = routes;
