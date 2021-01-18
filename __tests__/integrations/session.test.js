@@ -7,7 +7,7 @@ describe("auth", () => {
     const user = User.create({
       name: "Diogo",
       email: "diogo@ensinu.com.br",
-      passwordHash: "123123",
+      password: "123123",
     });
     const response = await request(app)
       .post("/sessions")
