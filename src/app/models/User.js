@@ -1,4 +1,6 @@
 const sequelize = require("sequelize");
+const { password } = require("../../config/database");
+const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -6,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
+      password: DataTypes.VIRTUAL, //salvo localmente
       passwordHash: DataTypes.STRING,
     },
     {
@@ -17,5 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+  User.prototype.checkPassword = function (password) {
+    //ter acesso ao "this"
+    return bcrypt.compare(password, this.passwordhash);
+  };
   return User;
 };

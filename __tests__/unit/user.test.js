@@ -13,6 +13,6 @@ describe("User", () => {
       password: "123123",
     });
     const hash = await bcrypt.hash("123456", 8);
-    expect(user.password).toBe(hash);
+    expect(await bcrypt.compare("132456", user.passwordHash)).toBe(hash);
   });
 });
