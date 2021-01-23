@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User } = require("../models/User");
 
 class SessionController {
   async store(req, res) {
@@ -11,7 +11,7 @@ class SessionController {
       return res.json(401).json({ message: "Incorrect Password" });
     }
 
-    return res.status(200).json({ user });
+    return res.status(200).json({ user, token: user.generateToken });
   }
 }
 
